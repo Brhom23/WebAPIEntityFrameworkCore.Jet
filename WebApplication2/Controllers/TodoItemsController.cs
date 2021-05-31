@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication2.Data;
+using WebApplication2.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,21 +13,37 @@ namespace WebApplication2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoItemController : ControllerBase
+    public class TodoItemsController : ControllerBase
     {
+        public readonly Context_MSAccess mContext;
+        public TodoItemsController(Context_MSAccess pContext)
+        {
+            mContext = pContext;
+        }
+
         // GET: api/<TodoItemController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<IEnumerable<TodoItem>>> Get()
         {
-            var _context = new Context_MSAccess();
-            return new string[] { "value1", "value2" , _context.TodoItems.Count().ToString()};
+            return await mContext.TodoItems.ToListAsync();
+
+            //return new string[] { "value1", "value2", mContext.TodoItems.Count().ToString() };
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/<TodoItemController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<TodoItem>> Get(long id)
         {
-            return "value";
+            var todoItem = await mContext.TodoItems.FindAsync(id);
+
+            if (todoItem == null)
+            {
+                return NotFound();
+            }
+
+            return todoItem;
+            //return "value";
         }
 
         // POST api/<TodoItemController>
