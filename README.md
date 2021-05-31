@@ -7,5 +7,7 @@ Web API EntityFrameworkCore.Jet example
 
 
 Test host api in  myASP.NET
+
 Controlpanel>Files
+
 Select Data folder then click File permission then select Read/Write then press update
