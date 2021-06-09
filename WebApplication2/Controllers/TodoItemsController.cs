@@ -48,20 +48,60 @@ namespace WebApplication2.Controllers
 
         // POST api/<TodoItemController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<TodoItem>> Post(TodoItem todoItem)
         {
+            mContext.TodoItems.Add(todoItem);
+            await mContext.SaveChangesAsync();
+            return CreatedAtAction("Get", new { id = todoItem.Id }, todoItem);
         }
 
         // PUT api/<TodoItemController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(long id, TodoItem todoItem)
         {
+            if (id != todoItem.Id)
+            {
+                return BadRequest();
+            }
+
+            mContext.Entry(todoItem).State = EntityState.Modified;
+
+            try
+            {
+                await mContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TodoItemExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
         // DELETE api/<TodoItemController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(long id)
         {
+            var todoItem = await mContext.TodoItems.FindAsync(id);
+            if (todoItem == null)
+            {
+                return NotFound();
+            }
+            mContext.TodoItems.Remove(todoItem);
+            await mContext.SaveChangesAsync();
+            return NoContent();
+        }
+        private bool TodoItemExists(long id)
+        {
+            return mContext.TodoItems.Any(e => e.Id == id);
         }
     }
+
 }
