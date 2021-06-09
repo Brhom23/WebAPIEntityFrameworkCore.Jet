@@ -30,7 +30,7 @@ To do the data migration
 
 
 then open PMC (Package Manager Console) (Tools->"NuGet package Manager"->Package Manager Console)
-write 
->Add-Migration InitialCreate
-then 
->Update-Database
+
+write:
+- > Add-Migration InitialCreate
+- > Update-Database
