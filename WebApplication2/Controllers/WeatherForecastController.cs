@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication2.Controllers
+namespace WebAPIEntityFrameworkCoreJet.Controllers
 {
     [ApiController]
     [Route("[controller]")]

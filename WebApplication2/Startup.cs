@@ -12,9 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication2.Data;
+using WebAPIEntityFrameworkCoreJet.Data;
 
-namespace WebApplication2
+namespace WebAPIEntityFrameworkCoreJet
 {
     public class Startup
     {
@@ -38,7 +38,7 @@ namespace WebApplication2
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication2", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIEntityFrameworkCoreJet", Version = "v1" });
             });
         }
 
@@ -49,7 +49,7 @@ namespace WebApplication2
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication2 v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIEntityFrameworkCoreJet v1"));
             }
 
             app.UseHttpsRedirection();

@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApplication2
+namespace WebAPIEntityFrameworkCoreJet
 {
     public class WeatherForecast
     {

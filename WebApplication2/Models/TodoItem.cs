@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace WebApplication2.Models
+namespace WebAPIEntityFrameworkCoreJet.Models
 {
     public class TodoItem
     {

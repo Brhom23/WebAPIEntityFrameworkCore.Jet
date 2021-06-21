@@ -3,9 +3,9 @@ using EntityFrameworkCore.Jet.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication2.Data;
+using WebAPIEntityFrameworkCoreJet.Data;
 
-namespace WebApplication2.Migrations
+namespace WebAPIEntityFrameworkCoreJet.Migrations
 {
     [DbContext(typeof(Context_MSAccess))]
     partial class Context_MSAccessModelSnapshot : ModelSnapshot
@@ -18,7 +18,7 @@ namespace WebApplication2.Migrations
                 .HasAnnotation("ProductVersion", "3.1.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("WebApplication2.Models.TodoItem", b =>
+            modelBuilder.Entity("WebAPIEntityFrameworkCoreJet.Models.TodoItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
